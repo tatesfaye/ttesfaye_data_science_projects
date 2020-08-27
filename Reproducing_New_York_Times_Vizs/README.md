@@ -11,13 +11,14 @@ As an avid New York Times reader, I commend the paper's use of data and high qua
   . Data Wrangling                             . Mapbox
   . Data Visualization                         . Tidycensus
   . Story Telling                              . Stringr
+
 <table border="0">
  <tr>
-    <td><b style="font-size:30px">Title</b></td>
-    <td><b style="font-size:30px">Title 2</b></td>
+    <td><b style="font-size:30px">Skills</b></td>
+    <td><b style="font-size:30px">Tools/Packages</b></td>
  </tr>
  <tr>
-    <td>Lorem ipsum ...</td>
+    <td>Data Wrangling \n Data Visualization \n Story Telling </td>
     <td>Lorem ipsum ...</td>
  </tr>
 </table>
