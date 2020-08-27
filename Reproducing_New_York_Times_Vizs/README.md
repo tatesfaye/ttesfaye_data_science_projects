@@ -18,8 +18,9 @@ As an avid New York Times reader, I commend the paper's use of data and high qua
     <td><b style="font-size:30px">Tools/Packages</b></td>
  </tr>
  <tr>
-    <td>Data Wrangling \n Data Visualization\      
-      Story Telling </td>
+    <td>Data Wrangling 
+      <br> Data Visualization      
+      <br> Story Telling </td>
     <td>Lorem ipsum ...</td>
  </tr>
 </table>
