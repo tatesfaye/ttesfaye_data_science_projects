@@ -10,7 +10,7 @@ This repo contains projects completed by Tsion (T) Tesfaye on various data scien
 
   + [Reproducing_opportunity_atlas_article_2018.Rmd](https://github.com/tatesfaye/ttesfaye/blob/master/Reproducing_New_York_Times_Vizs/reproducing_opportunity_atlas_article_2018.Rmd): In 2018, the New York Times published a compelling visualization showing how some neighborhoods facilitate the upward economic mobility of kids while others shackle it. This document reproduces a subset of that work. [Click here](https://tatesfaye.github.io/ttesfaye/Reproducing_New_York_Times_Vizs/reproducing_opportunity_atlas_article_2018.html) to view this workbook as an `html`.
 
-<table border="0">
+<table border="10">
  <tr>
     <td><b style="font-size:30px">Skills</b></td>
     <td><b style="font-size:30px">Tools/Packages</b></td>
