@@ -21,6 +21,8 @@ As an avid New York Times reader, I commend the paper's use of data and high qua
     <td>Data Wrangling 
       <br> Data Visualization      
       <br> Story Telling </td>
-    <td>Lorem ipsum ...</td>
+    <td>Tidycensus 
+      <br> Mapbox
+      <br> Stringr </td>
  </tr>
 </table>
