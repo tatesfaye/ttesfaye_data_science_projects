@@ -12,12 +12,8 @@ This repo contains projects completed by Tsion (T) Tesfaye on various data scien
 
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-table, th, td {
-  border: 5px solid black;
-  border-collapse: collapse;
-}
+
 table.center {
   margin-left:auto; 
   margin-right:auto;
@@ -26,10 +22,7 @@ table.center {
 </head>
 <body>
 
-<h2>Center a Table</h2>
-<p>To center a table, set left and right margin to auto:</p>
-
-<table class="center"; boarder="8">
+<table class="center", border="6">
  <tr>
     <td><b style="font-size:30px">Skills</b></td>
     <td><b style="font-size:30px">Tools/Packages</b></td>
@@ -43,3 +36,6 @@ table.center {
       <br> Stringr </td>
  </tr>
 </table>
+</body>
+</html>
+
