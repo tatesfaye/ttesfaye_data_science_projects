@@ -1,0 +1,148 @@
+---
+title: "opportunity_atlas_nyt_viz"
+author: "T Tesfaye"
+date: "8/26/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Libraries
+library(here)
+library(tidyverse)
+library(tidycensus)
+library(sf)
+library(stringr)
+
+
+
+# Parameters
+input_san_jose_atlas_data <- here::here("data/san_joseatlas_tidy_challenge_Jenny.rds")
+output_san_jose_atlas_census_data <- here::here("data/san_jose_atlas_census_data.geojson")
+
+input_entire_us_oppAtlas <- here::here("data/entire_us_tract_outcomes_oppAtlas.csv")
+output_entire_us_oppAtlas <- here::here("data/entire_us_atlas_census.geojson")
+
+
+#-----------------------------------
+# Code
+san_jose_atlas_data <- read_rds(input_san_jose_atlas_data)
+entire_us_atlas <- read_csv(input_entire_us_oppAtlas)
+```
+
+
+
+## Project Description
+_Project Inspired by Jenny Nova_
+
+### Part I: Get Census Data
+
+Tidycensus is a package that provides R users with access to the US national census. It has two major functions:
+
+1. `get_decennial()` which is used to access the 1990, 2000, and 2010 decennial US Census APIs, and 
+2. `get_acs()`, which is used to access the 5-year American Community Survey APIs
+
+For this project, we will focus on the `get_acs()` function. This function requires a few key arguments to return the desired dataset. The two that need explanation are:
+
+* `geography`: the specification of the US geographical designation for the desired data. See [here](https://walker-data.com/tidycensus/articles/basic-usage.html) to find the various options.
+* `variables`: There are over 22,000 variable IDs across different census files. We want to analyze the median household income in `2015`. Hence, we will load the variables for `2015` from the `acs5` file and search the resulting tibble for "Median Household Income." This results in the code: `B19013_001`. See [here](https://walker-data.com/tidycensus/articles/basic-usage.html) for more detail.
+
+```{r}
+vars <- load_variables(2015, "acs5", cache = TRUE)
+```
+
+Now we are ready to load the median income data for Santa Clara in 2015.
+
+```{r}
+tract_boundaries <- 
+  tidycensus::get_acs(
+  geography = "tract",
+  variables = "B19013_001",
+  year = 2015,
+  state = "CA",
+  county = "Santa Clara",
+  geometry = TRUE
+)
+```
+
+### Part II: Merge Census with Opportunity Atlas Data
+
+Because we want to visually represent the income information on a map, and the income information is on the atlas dataset while the geographic information is on the census dataset, we want to join these two datasets.
+
+```{r}
+income_with_boundaries <- 
+  tract_boundaries %>% 
+  left_join(atlas_data, by = "GEOID")
+```
+
+### Part III: Output the Data for Mapbox
+Mapbox, the interactive visualizing platform, requires its input to be in a `geojson` format. Hence, we will write the above dataframe into a geojson.
+
+```{r}
+income_with_boundaries %>% 
+  write_sf(output_san_jose_atlas_census_data)
+```
+
+
+### Part IV: Determine the Colors for Mapbox
+
+
+We want to use the Red, Yellow, Blue color tone as used by the NYT article.
+First find all the possible colors
+
+```{r}
+RColorBrewer::display.brewer.all()
+```
+
+```{r}
+RColorBrewer::brewer.pal(n = 11, "RdYlBu")
+```
+
+We'll now break the income data based on this breakdown based on percentages from 0 to 100% at every checkpoint at 10%s.
+
+```{r}
+quantile(atlas_data$kid_indiv_income, probs = seq(0, 1, 0.1))
+```
+
+
+We'll use these values to color Mapbox.
+
+
+# Mapbox output
+
+Here is a link to the interactive mapbox output. For ease of accessibility, we will also save a static version of the map here.
+
+```{r}
+# Parammeters
+
+zoom <- 9.3
+width <- 1200
+height <- 800
+latitude <- 37.2138
+longitude <- -121.7106
+access_token <- 
+'pk.eyJ1IjoidHRlc2ZheWUiLCJhIjoiY2s3Zm12ZXFwMDRrcDNsb2RrNDBoMXk3aSJ9.Lrsf4_yVFFwblZNM_eGJuw'
+style_id <- 'ckec0p24w1p1u1an16l2ngbpt'
+username <- 'ttesfaye'
+  
+
+mapbox_api_call <- 
+  api_call <- 
+  str_glue(
+    "https://api.mapbox.com/styles/v1/{username}/{style_id}/static/",
+    "{longitude},{latitude},{zoom}/{width}x{height}?access_token={access_token}"
+  )
+
+mapbox_api_call
+```
+
+Save and display this image as png.
+
+```{r}
+mapbox_img_output <- here("/data/san_jose_oppAtlas.png")
+download.file(url = mapbox_api_call, destfile = mapbox_img_output)
+```
+
