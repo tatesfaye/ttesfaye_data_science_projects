@@ -18,6 +18,8 @@ This repo contains projects completed by Tsion (T) Tesfaye on various data scien
     - **_Skills_**: Data Analysis, Data Wrangling, Data Visualization, Hypothesis Testing
     - **_Tools/Packages_**: gganimate, ggplot2, readxl, lubridate
 
+* **[CS230](https://github.com/CX3XC/CS230)**: A repo linking to a class project that processes satellite imagery using a ResNet50 model and determines the building damage level in natural disasters so that emergency responders go prepared.
+
 * **Modeling**: How do hotels maximize booking while planning for potential cancellations? This repo answers that question by modeling the probability of guests canceling a booking in the [hotel_bookings.md](Modeling/hotel_bookings.md) workbook. The resulting model has an 81% predictive accuracy.
   
   - **_Skills_**: Data Analysis, Modeling
@@ -44,3 +46,4 @@ This repo contains projects completed by Tsion (T) Tesfaye on various data scien
       - **_Skills_**: Advanced Data Wrangling, Data Visualization
       - **_Tools/Packages_**: googlesheets4, sf, tidyverse
    
+* **[dssg-cfa-public](https://github.com/StanfordDataScience/dssg-cfa-public)** Partnering with Code for Africa, a team of three Stanford Data Science for Social Good fellows built a natural language processing model which processed government publications to identify suspicious behavior and uncover land related corruption in Kenya. We used Optical Character Recognition, Named Entity Recognition, and Network Analysis.
