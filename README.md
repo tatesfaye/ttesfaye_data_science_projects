@@ -6,7 +6,7 @@ This repo contains various data science projects completed by Tsion (T) Tesfaye.
 
 ## Outline
 
-1. **COVID-19**: As our newsfeed recently is inundated by COVID-19 related stories, I wanted to take a unique perspective and analyze the mico as well as macro impacts of the pandemic. This repo contains such projects.
+1) **COVID-19**: As our newsfeed recently is inundated by COVID-19 related stories, I wanted to take a unique perspective and analyze the mico as well as macro impacts of the pandemic. This repo contains such projects.
 
   + [covid_most_affected_as_of_jul26.pptx](COVID-19/covid_most_affected_as_of_jul26.pptx): I scraped the website: www.worldometers.info to study countries in the world most affected by the pandemic. [covid_most_affected_data_scrape.html](COVID-19/covid_most_affected_data_scrape.html) illustrates the process of harvesting the data while [covid_most_affected_as_of_jul26.twbx](COVID-19/covid_most_affected_as_of_jul26.twbx) shows the Tableau visualization and analysis of this data.
   
@@ -19,7 +19,9 @@ This repo contains various data science projects completed by Tsion (T) Tesfaye.
     - **_Tools/Packages_**: gganimate, ggplot2, readxl, lubridate
     
 
-2. **[CS230](https://github.com/CX3XC/CS230)**: A repo linking to a class project that processes satellite imagery using a ResNet50 model and determines the building damage level in natural disasters so that emergency responders go prepared.
+
+
+2) **[CS230](https://github.com/CX3XC/CS230)**: A repo linking to a class project that processes satellite imagery using a ResNet50 model and determines the building damage level in natural disasters so that emergency responders go prepared.
 
 * **Modeling**: How do hotels maximize booking while planning for potential cancellations? This repo answers that question by modeling the probability of guests canceling a booking in the [hotel_bookings.md](Modeling/hotel_bookings.md) workbook. The resulting model has an 81% predictive accuracy.
   
@@ -28,7 +30,7 @@ This repo contains various data science projects completed by Tsion (T) Tesfaye.
   
 
 
-3. **[Reproducing_New_York_Times_Vizs](https://tatesfaye.github.io/ttesfaye_data_science_projects/Reproducing_New_York_Times_Vizs/)**: As an avid New York Times reader, I commend the paper's use of data and high quality visualizations that tell impactful stories. This repo contains some of the visualizations I reproduced from different articles I found to be intriguing. 
+3) **[Reproducing_New_York_Times_Vizs](https://tatesfaye.github.io/ttesfaye_data_science_projects/Reproducing_New_York_Times_Vizs/)**: As an avid New York Times reader, I commend the paper's use of data and high quality visualizations that tell impactful stories. This repo contains some of the visualizations I reproduced from different articles I found to be intriguing. 
 
   + [Reproducing_opportunity_atlas_article_2018.Rmd](https://github.com/tatesfaye/ttesfaye/blob/master/Reproducing_New_York_Times_Vizs/reproducing_opportunity_atlas_article_2018.Rmd): In 2018, the New York Times published a compelling visualization showing how some neighborhoods facilitate the upward economic mobility of kids while others shackle it. This document reproduces a subset of that work. [Click here](https://tatesfaye.github.io/ttesfaye_data_science_projects/Reproducing_New_York_Times_Vizs/reproducing_opportunity_atlas_article_2018.html) to view this workbook as an html.
   
@@ -37,7 +39,8 @@ This repo contains various data science projects completed by Tsion (T) Tesfaye.
     
     
     
- 4. **US_Election**: 
+    
+ 4) **US_Election**: 
  
    + [election_financing.md](US_Election/election_financing.md): The 2020 US presidential race has been unusual in many aspects including the unprecedented spending on campaign ads. This repo takes a closer look at personal and public donations to finance campaigns of all democrat as well as republican candidates as of January 31, 2020. Fun Fact: Mike Bloomberg has set an all time spending record at half a billion dollars. 
 
@@ -52,4 +55,4 @@ This repo contains various data science projects completed by Tsion (T) Tesfaye.
       
       
    
-5. **[dssg-cfa-public](https://github.com/StanfordDataScience/dssg-cfa-public)** Partnering with Code for Africa, a team of three Stanford Data Science for Social Good fellows built a natural language processing model which processed government publications to identify suspicious behavior and uncover land related corruption in Kenya. We used Optical Character Recognition, Named Entity Recognition, and Network Analysis.
+5) **[dssg-cfa-public](https://github.com/StanfordDataScience/dssg-cfa-public)** Partnering with Code for Africa, a team of three Stanford Data Science for Social Good fellows built a natural language processing model which processed government publications to identify suspicious behavior and uncover land related corruption in Kenya. We used Optical Character Recognition, Named Entity Recognition, and Network Analysis.
