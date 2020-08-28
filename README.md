@@ -2,7 +2,7 @@
 
 ## Intro
 
-This repo contains projects completed by Tsion (T) Tesfaye on various data science projects. You can view this page as html [here](https://tatesfaye.github.io/ttesfaye_data_science_projects/): https://tatesfaye.github.io/ttesfaye_data_science_projects/.
+This repo contains various data science projects completed by Tsion (T) Tesfaye. You can view this page as html [here](https://tatesfaye.github.io/ttesfaye_data_science_projects/): https://tatesfaye.github.io/ttesfaye_data_science_projects/.
 
 ## Outline
 
@@ -17,6 +17,7 @@ This repo contains projects completed by Tsion (T) Tesfaye on various data scien
   
     - **_Skills_**: Data Analysis, Data Wrangling, Data Visualization, Hypothesis Testing
     - **_Tools/Packages_**: gganimate, ggplot2, readxl, lubridate
+    
 
 2. **[CS230](https://github.com/CX3XC/CS230)**: A repo linking to a class project that processes satellite imagery using a ResNet50 model and determines the building damage level in natural disasters so that emergency responders go prepared.
 
@@ -24,6 +25,7 @@ This repo contains projects completed by Tsion (T) Tesfaye on various data scien
   
   - **_Skills_**: Data Analysis, Modeling
   - **_Tools/Packages_**: tidymodels, tidyverse
+  
 
 
 3. **[Reproducing_New_York_Times_Vizs](https://tatesfaye.github.io/ttesfaye_data_science_projects/Reproducing_New_York_Times_Vizs/)**: As an avid New York Times reader, I commend the paper's use of data and high quality visualizations that tell impactful stories. This repo contains some of the visualizations I reproduced from different articles I found to be intriguing. 
@@ -32,6 +34,8 @@ This repo contains projects completed by Tsion (T) Tesfaye on various data scien
   
     - **_Skills_**: Data Wrangling, Data Visualization, Story Telling
     - **_Tools/Packages_**: Tidycensus, Mapbox, Stringr
+    
+    
     
  4. **US_Election**: 
  
@@ -45,5 +49,7 @@ This repo contains projects completed by Tsion (T) Tesfaye on various data scien
       
       - **_Skills_**: Advanced Data Wrangling, Data Visualization
       - **_Tools/Packages_**: googlesheets4, sf, tidyverse
+      
+      
    
 5. **[dssg-cfa-public](https://github.com/StanfordDataScience/dssg-cfa-public)** Partnering with Code for Africa, a team of three Stanford Data Science for Social Good fellows built a natural language processing model which processed government publications to identify suspicious behavior and uncover land related corruption in Kenya. We used Optical Character Recognition, Named Entity Recognition, and Network Analysis.
