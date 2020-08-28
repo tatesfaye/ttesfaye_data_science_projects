@@ -13,8 +13,8 @@ This repo contains projects completed by Tsion (T) Tesfaye on various data scien
 
        <table class="center", border="6">
        <tr>
-          <td><b style="font-size:30px">Skills</b></td>
-          <td><b style="font-size:30px">Tools/Packages</b></td>
+          <td><b style="font-size:20px">Skills</b></td>
+          <td><b style="font-size:20px">Tools/Packages</b></td>
        </tr>
        <tr>
           <td>Data Wrangling 
