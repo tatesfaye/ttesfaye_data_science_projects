@@ -2,7 +2,7 @@
 
 ## Intro
 
-This repo contains projects completed by Tsion (T) Tesfaye on various data science projects. You can view this page as html [here](https://tatesfaye.github.io/ttesfaye_data_science_projects/).
+This repo contains projects completed by Tsion (T) Tesfaye on various data science projects. You can view this page as html [here](https://tatesfaye.github.io/ttesfaye_data_science_projects/): https://tatesfaye.github.io/ttesfaye_data_science_projects/.
 
 ## Outline
 
