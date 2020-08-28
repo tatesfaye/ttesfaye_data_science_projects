@@ -1,0 +1,153 @@
+---
+title: "Global Covid Data Prep"
+author: "T Tesfaye"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    highlight: haddock
+    theme: journal
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE}
+# Libraries
+library(tidyverse)
+library(dcl)
+library(lubridate)
+library(rvest)
+library(ggrepel)
+
+
+
+url_data <- "https://www.worldometers.info/coronavirus/#countries"
+css_selector <- "#main_table_countries_today"
+
+file_out <- "../Tableau/global_covid_numbers.csv"
+file_out2 <-  "../Tableau/global_covid_nums_modified.csv"
+file_out_mortality <- "../Tableau/global_mortality_rate.csv"
+file_in <- "../Tableau/global_covid_numbers.csv"
+file_out_active_cases_num <- "../Tableau/global_active_cases.xls"
+```
+
+## Introduction
+We want to understand find out countries most affected by covid-19. We will start by scraping the www.worldometers.info which updates its global covid cases count every day. This data was scraped on July 26, 2020. 
+
+## Scrape the Website
+
+```{r}
+#read in the table from the worldometers website
+
+global_covid_numbers <- 
+  url_data %>% 
+  read_html() %>% 
+  html_node(css = css_selector) %>% 
+  html_table() %>% 
+  as_tibble()
+```
+
+Then, write out the table into a csv so that we can parse it back properly converting the characters to numbers
+
+
+```{r}
+global_covid_numbers %>% 
+  write_csv(path = file_out)
+```
+
+## Wrangle and Output Overall Data
+Read in the csv converting the relevant cols to numbers and eliminating the three trailing cols we don't need
+
+```{r}
+global_covid_nums_csv <- 
+  file_in %>% 
+  read_csv(
+    col_types = cols_only(
+      `Country,Other` = col_character(),
+      TotalCases = col_number(),
+      NewCases = col_number(),
+      TotalDeaths = col_number(),
+      NewDeaths = col_double(),
+      TotalRecovered = col_number(),
+      NewRecovered = col_number(),
+      ActiveCases = col_number(),
+      `Serious,Critical` = col_number(),
+      `Tot Cases/1M pop` = col_number(),
+      `Deaths/1M pop` = col_number(),
+      TotalTests = col_number(),
+      `Tests/1M pop` = col_number(),
+      Population = col_number(),
+      Continent = col_character()
+    ) 
+  )
+```
+
+Note, this intorduces new parsing errors. However `problems(global_covid_nums_csv)` shows that these errors occured due to an existing N/A in the data so we aren't worried. Hence, rename the columns as desired and output the cleaned up data.
+
+```{r}
+global_covid_nums_modified <- 
+  global_covid_nums_csv %>% 
+  pivot_longer(
+    cols = c(TotalCases, ActiveCases, TotalDeaths),
+    names_to = c("total_active_deaths"),
+    values_to = 'total_active_deaths_num'
+  )
+  
+ 
+global_covid_nums_modified %>% 
+  write_csv(file_out2)
+```
+
+
+```{r}
+#overwrite the existing global_covid_numbers csv with this correctly parsed data.
+
+global_covid_nums_csv %>% 
+  write_csv(path = file_out)
+```
+
+```{r}
+# rows to remove
+continents = c("North America", "South America", "Asia", "Europe", "Africa", "Oceania", "World")
+```
+
+
+
+## Extract and Output Mortality Rate
+
+Finding the mortality rate
+
+
+
+```{r}
+`%notin%` <- Negate(`%in%`)
+
+mortality_rate <- 
+  global_covid_nums_csv %>% 
+  mutate(mortality_rate = TotalDeaths / TotalCases * 100)
+
+
+mortality_rate %>% 
+  write_csv(file_out_mortality)
+```
+
+
+```{r}
+"North America" %notin% continents
+
+global_covid_nums_csv %>% 
+  filter(!("Country,Other" %in% continents)) 
+```
+
+
+```{r}
+global_covid_nums_csv %>% 
+  write_excel_csv(file_out_active_cases_num)
+```
+
+## Visualize and Analyze in Tableau
+
+This step will take place in Tableau. 

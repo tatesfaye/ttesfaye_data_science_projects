@@ -1,0 +1,252 @@
+---
+title: "DSSG Data Inquiry: COVID Observational Exploration"
+author: "T Tesfaye"
+date: "7/28/2020"
+output: 
+  html_document:
+    highlight: haddock
+    theme: journal
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+# Libraries
+library(lubridate)
+library(gganimate)
+library(tidyverse)
+library(readxl)
+library(stringr)
+
+input_nyt_covid_counties <- "../covid-19-data_nyt/us-counties.csv"
+
+input_unacast_social_distance_counties <- 
+  "../sample-county-social-distancing-unacast.csv"
+
+input_poverty_county <- 
+  "../County Level PovertyEstimates.xls"
+
+# Parameters
+covid_nyt <- read_csv(input_nyt_covid_counties)
+sd_uncast <- read_csv(input_unacast_social_distance_counties)
+poverty_usda <- read_excel(input_poverty_county, skip = 4)
+```
+
+
+## Intro and Elaborate Hypothesis
+
+This markdown is designed to analyze the county level correlation between poverty and social distancing and their impact on COVID related death. We want to test the hypothesis that poorer counties are more prone to covid deaths due to lower social distancing since people in lower income communities are more likely to have essential jobs which require them to travel even during covid. To investigate this hypothesis, we'll look into the following elaborate hypotheses
+
+1. Counties with high poverty have lower social distancing grades
+2. Counties with low poverty have higher social distancing grades
+3. Counties with high poverty have high covid death rates
+4. Counties with lower social distancing grades have lower Covid related deaths
+
+## Datasets
+
+Sources: These datasets are drawn from [USDA](https://www.ers.usda.gov/data-products/county-level-data-sets/documentation/), [UNCAST](https://www.unacast.com/covid19/social-distancing-scoreboard) and [New York Times](https://github.com/nytimes/covid-19-data). 
+
+**Note** UNCAST is a private dataset. Free access data is available only for counties in the states of Washington and Florida for the month of April. Hence, our analysis here will only focus on these two states and the month of April 2020. 
+
+Also, to get more information on the variables in the USDA poverty statistics, check the second page of the Excel file. For our purposes, we will be focusing on the `PCTPOVALL_2018` column which represents the	"Estimated percent of people of all ages in poverty 2018."
+
+With these goals in mind, let's modify the datasets.
+
+```{r Modify the Data}
+states_of_interest <- c("Washington", "Florida")
+states_of_interest_abbr <- c("WA", "FL")
+
+# Covid rate from New York Times
+covid_wash_flo <- 
+  covid_nyt %>% 
+  mutate(month = month(date)) %>% 
+  filter(
+    state %in% states_of_interest,
+    month == 4 # filtering the month of april
+  )
+
+poverty_wash_flo <- 
+  poverty_usda %>% 
+  filter(
+    Stabr %in% states_of_interest_abbr,
+    Area_name != "Florida",
+    Area_name != "Washington"
+  ) %>% 
+  mutate(
+    county_name = str_remove(Area_name, "County$") #Removing the phrase "County" for ease of visualization
+  ) %>% 
+  select(
+    FIPStxt,
+    county_name,
+    Stabr,
+    PCTPOVALL_2018
+  )
+
+
+sd_grade <- 
+  sd_uncast %>% 
+    mutate(
+    county_name = str_remove(county_name, "County$")
+  ) %>% 
+  select(
+    state_code,
+    county_fips,
+    county_name,
+    grade_total
+  )
+```
+
+
+## Investigating Each Elaborate Hypothesis
+
+### High Poverty vs Low Social Distancing Rates
+
+Note: We are using the 2018 USDA poverty rate assessment of all individuals in a county as a proxy to estimate the overall poverty level in that county. And, social distancing rates are detemined based on the grade given to each county by UNCAST.
+
+```{r Poverty/SD, fig.height=12}
+poverty_wash_flo %>% 
+  ggplot(aes(fct_reorder(county_name, PCTPOVALL_2018), PCTPOVALL_2018, color = Stabr)) +
+  geom_point() +
+  geom_hline(yintercept = 20, color = "red") +
+  annotate(
+    "text",
+    x = 100,
+    y = 22,
+    label = "Very Poor Counties ->",
+    color = "red",
+    size = 3
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom"
+  ) +
+  
+  scale_color_viridis_d() +
+  scale_y_continuous(
+    labels = scales::label_percent(scale = 1)
+  ) +
+  coord_flip() +
+  labs(
+    x = NULL,
+    y = "Povery Level\n(percentage)",
+    title = "Poverty Level Per County in Washington and Florida",
+    subtitle = "Most of the Very Poor counties are from the state of Florida.",
+    caption = "Source: USDA",
+    color = "State"
+  )
+```
+
+Now let's look into county's social distancing grade with respect to poverty level by combining the social distancing data with the poverty data. The grading system uses `+` and `-` which makes our visualization cluttered. Hence, we'll merge these and focus on the basic A-F grading for now. We'll also characterize counties with > 20% poverty rate to be `very poor counties` (Note: this threshold was chosen arbitrarily). Our focus is to see the distribution of these very poor counties in the ranking.
+
+```{r Not Presentation Quality, eval=FALSE, fig.height=7, include=FALSE}
+sd_grade %>% 
+  ggplot(aes(county_name, as_factor(grade_total), color = state_code)) +
+  geom_point() +
+  coord_flip() +
+  labs(
+    title = "Graph too confusing. Skip. We'll explore better representations."
+  )
+
+
+#This plot is very difficult to see so we are going to leave it in its EDA format and not work on making it presentation plot.
+```
+
+ 
+```{r, fig.height=12}
+poverty_wash_flo %>% 
+  mutate(county_fips = as.integer(FIPStxt)) %>% 
+  left_join(sd_grade, by = c("county_fips", "county_name")) %>% 
+  mutate(
+    grade_total = str_remove(grade_total, "[+-]"),
+    poverty_level = if_else(PCTPOVALL_2018 >= 20, "very poor", "not very poor")
+  ) %>% 
+  drop_na() %>% 
+  ggplot(aes(fct_reorder(county_name, PCTPOVALL_2018), PCTPOVALL_2018, color = poverty_level)) +
+  geom_point(alpha = 0.8) +
+  ggthemes::scale_color_colorblind() +
+  transition_states(
+    Stabr,
+    transition_length = 1,
+    state_length = 1
+  ) +
+  facet_grid(cols = vars(grade_total)) +
+  coord_flip() +
+  #theme_minimal() +
+  theme(
+    legend.position = "bottom"
+  ) +
+  labs(
+    x = NULL,
+    y = "Poverty level per county",
+    title = "Social Distancing Grades per Povery Level in: {closest_state}",
+    subtitle = "There are more very poor counties in Florida than in Washington.\nThere doesn't seem to be an apparent correlation between poverty level and social distancing grade in these two states",
+    caption = "By: T Tesfaye",
+    color = "Poverty Level"
+  )
+```
+
+The above plot shows that there are more very poor counties in Florida than Washington and that there doesn't appear to be a correlation between poverty level and social distance grade. However, note that this isn't conclusive. To see the grade distribution more clearly, let's revisualize this data.
+
+```{r}
+poverty_rate_per_grade <- 
+  poverty_wash_flo %>% 
+  mutate(county_fips = as.integer(FIPStxt)) %>% 
+  left_join(sd_grade, by = c("county_fips", "county_name")) %>% 
+  mutate(
+    grade_total = str_remove(grade_total, "[+-]"),
+    poverty_level = if_else(PCTPOVALL_2018 >= 20, "very poor", "not very poor")
+  ) %>% 
+  drop_na() %>% 
+  count(grade_total, poverty_level, sort = TRUE) %>% 
+  group_by(grade_total) %>% 
+  mutate(
+    prop = n / sum(n) * 100,
+    prop = round(prop, 0)
+  )
+
+
+poverty_rate_per_grade %>% 
+  ggplot(aes(grade_total, prop, fill = poverty_level)) +
+  geom_col(position = "dodge") +
+  scale_fill_viridis_d() +
+  theme_minimal() +
+  labs(
+    x = "Social Distancing Grade",
+    y = "Proportion of citizens in poverty",
+    color = "Poverty Level",
+    title = "Grade Per Poverty level",
+    subtitle = "Very poor counties earn medium grade"
+  )
+
+  
+  
+```
+
+This plot shows that 'very poor' counties earn medium grade (neither too high (A) or too low (F)).
+
+
+### Conclusion
+
+Here are some takeaways from the above exploration. Firstly, the per county alanysis of the data doesn't indicate a correlation between social distancing grade and poverty level. However, this is by no means a conclusive analysis since we haven't randomized the two groups. In other words, we haven't looked at two counties that are identical in every aspect except for their poverty level and compare their social distancing score. Hence, our analysis is prone to numerous potential confounders. One such potential confounder is the state dynamics. For instance, we noticed that Florida has more poor counties than Washington. Also, these two states have different political inclinations since Washington state is highly demoncrat while Florida is highly republican. These are only two examples of potential differences between the two states.
+
+### Next steps
+
+The above analysis took a total of four hours. Since I can't pursue further research due to limited time, here is a suggested path going forward.
+
+1. Repeat the above analysis for counties that are relatively similar to one another except for their poverty level and compare the social distancing grade.
+2. Go through the remaining three hypotheses and conduct an extensive analysis
+3. Brainstorm potential other hypotheses.
+4. For each hypothesis, brainstorm potential confounders and investigate those confounders.
+5. Repeat the above process for all US states
+6. If one is interested in the impact of poverty in the global distribution of covid, obtain the relevant data and repeat the above analysis for different countries around the world.
+7. After extensive analysis of the poverty vs social distancing hypothesis, do a similar analysis exploring these two datasets against the NYT Covid rate data.
+
+
+## Overall Limitations
+
+Note that this analysis has inherent limitations. First of all, the poverty related data is from 2018 while the covid data is from April 2020. This introduces some uncertaninity to the conclusion since a county's poverty status might have shifted since 2018. The dividion of `very poor counties` was also arbitrary (>20% poverty level). In addition, the social distancing related data has inherent limitations. See the [UNCAST](https://www.unacast.com/covid19/social-distancing-scoreboard) website for more details.
+
+
+## Last Words/Take Aways
+
+This isn't a conclusive list of next steps. Further research will likely yeild further questions. Throughout this investigation of Elaborate Theories, keep in mind what Russel Poldrack said in his talk about the reproducibility of data analytics projects, "be wary when you see a result that confirms your hypothesis" and keep digging.
