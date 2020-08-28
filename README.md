@@ -6,7 +6,7 @@ This repo contains projects completed by Tsion (T) Tesfaye on various data scien
 
 ## Outline
 
-* **COVID-19**: Although our newsfeed recently is inundated by COVID-19 related stories, I wanted to take a unique perspective and analyze the mico as well as macro impacts of the pandemic. This repo contains such projects.
+* **COVID-19**: As our newsfeed recently is inundated by COVID-19 related stories, I wanted to take a unique perspective and analyze the mico as well as macro impacts of the pandemic. This repo contains such projects.
 
   + [covid_most_affected_as_of_jul26.pptx](COVID-19/covid_most_affected_as_of_jul26.pptx): I scraped the website: www.worldometers.info to study countries in the world most affected by the pandemic. [covid_most_affected_data_scrape.html](COVID-19/covid_most_affected_data_scrape.html) illustrates the process of harvesting the data while [covid_most_affected_as_of_jul26.twbx](COVID-19/covid_most_affected_as_of_jul26.twbx) shows the Tableau visualization and analysis of this data.
   
