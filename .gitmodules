@@ -1,0 +1,3 @@
+[submodule "dssg-cfa-public"]
+	path = dssg-cfa-public
+	url = https://github.com/StanfordDataScience/dssg-cfa-public
