@@ -1,3 +1,6 @@
 [submodule "dssg-cfa-public"]
 	path = dssg-cfa-public
 	url = https://github.com/StanfordDataScience/dssg-cfa-public
+[submodule "CS230"]
+	path = CS230
+	url = https://github.com/CX3XC/CS230
