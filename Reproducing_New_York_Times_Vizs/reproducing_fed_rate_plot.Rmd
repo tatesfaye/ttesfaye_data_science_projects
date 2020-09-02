@@ -2,14 +2,18 @@
 title: "reproducing_fed_rate_plot"
 author: "T Tesfaye"
 date: "9/2/2020"
-output: html_document
+output: 
+  html_document:
+    toc: true
+    theme: journal
+    toc_float: true
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 # Library
 library(tidyverse)
 library(here)
@@ -32,7 +36,7 @@ fed_rate <-
 ```
 ## Intro
 
-In August 2020, the economic writer, Jeanna Smialek, published [an article](https://www.nytimes.com/2020/08/27/business/economy/federal-reserve-inflation-jerome-powell.html) in the New York Times detailing the Fed's plan to deal with unemployment caused by the COVID-19 pandemic. [The article](https://www.nytimes.com/2020/08/27/business/economy/federal-reserve-inflation-jerome-powell.html) explained how the Federal Reserve is taking an unusual approach to prioritize strong labor markets over lower inflation rates. 
+In August 2020, the economic writer, Jeanna Smialek, published [an article](https://www.nytimes.com/2020/08/27/business/economy/federal-reserve-inflation-jerome-powell.html) in the New York Times detailing the Fed's plan to deal with unemployment caused by the COVID-19 pandemic. The article explained how the Federal Reserve is taking an unusual approach to prioritize strong labor markets over lower inflation rates. 
 
 This visualization reproduces the historical data on interest rates.
 
@@ -113,5 +117,13 @@ fed_rate_cleaned %>%
     subtitle = 'Interest rates are near zero as the Federal Reserve tries to support the economy while the\npandemic-induced downturn drags on.',
     caption = "Source: Federal Reserve\nTsion Tesfaye\nMotivated by The New York Times"
   )
+```
+
+## Compare Outputs
+
+Here is the original NYT plot for comparison.
+
+```{r}
+knitr::include_graphics(here::here("data/NYT_fed_rate_plot.png"))
 ```
 
