@@ -38,7 +38,7 @@ This repo contains various data science projects completed by Tsion (T) Tesfaye.
       + **_Tools/Packages_**: Tidyverse(especially ggplot2), Lubridate
 
     
-   * **[Reproducing_opportunity_atlas_article_2018.html](https://github.com/tatesfaye/ttesfaye/blob/master/Reproducing_New_York_Times_Vizs/reproducing_opportunity_atlas_article_2018.html)**: In 2018, the New York Times published a compelling visualization showing how some neighborhoods facilitate the upward economic mobility of kids while others shackle it. This document reproduces a subset of that work. [Click here](https://tatesfaye.github.io/ttesfaye_data_science_projects/Reproducing_New_York_Times_Vizs/reproducing_opportunity_atlas_article_2018.Rmd) to view this workbook as Rmd.
+   * **[Reproducing_opportunity_atlas_article_2018.html](https://github.com/tatesfaye/ttesfaye/blob/master/Reproducing_New_York_Times_Vizs/reproducing_opportunity_atlas_article_2018.html)**: In 2018, the New York Times published a compelling visualization showing how some neighborhoods facilitate the upward economic mobility of kids while others shackle it. This document reproduces a subset of that work. [Click here](https://github.com/tatesfaye/ttesfaye_data_science_projects/blob/master/Reproducing_New_York_Times_Vizs/reproducing_opportunity_atlas_article_2018.Rmd) to view this workbook as Rmd.
 
       + **_Skills_**: Data Wrangling, Data Visualization, Story Telling
       + **_Tools/Packages_**: Tidycensus, Mapbox, Stringr
