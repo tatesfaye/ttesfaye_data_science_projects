@@ -35,7 +35,7 @@ file_out_active_cases_num <- "../Tableau/global_active_cases.xls"
 ```
 
 ## Introduction
-We want to understand find out countries most affected by covid-19. We will start by scraping the www.worldometers.info which updates its global covid cases count every day. This data was scraped on July 26, 2020. 
+We want to understand find out countries most affected by covid-19. We will start by scraping the www.worldometers.info which updates its global covid cases count every day. This data was scraped on July 26, 2020. _Project Inspired by Joshua Adeoye_
 
 ## Scrape the Website
 

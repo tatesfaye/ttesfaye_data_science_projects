@@ -37,8 +37,9 @@ This repo contains various data science projects completed by Tsion (T) Tesfaye.
       + **_Skills_**: Data Wrangling, Data Visualization, Story Telling
       + **_Tools/Packages_**: Tidycensus, Mapbox, Stringr
    
+ 5) **[Shiny_Appz](Shiny_Appz)**: This repo contains general use apps I designed using the Shiny Package.
     
- 5) **[US_Election](US_Elections)**: 
+ 6) **[US_Election](US_Elections)**: 
 
    * [election_financing.md](US_Election/election_financing.md): The 2020 US presidential race has been unusual in many aspects including the unprecedented spending on campaign ads. This repo takes a closer look at personal and public donations to finance campaigns of all democrat as well as republican candidates as of January 31, 2020. Fun Fact: Mike Bloomberg has set an all time spending record at half a billion dollars.    
 
@@ -53,4 +54,4 @@ This repo contains various data science projects completed by Tsion (T) Tesfaye.
 
 
    
-6) **[dssg-cfa-public](https://github.com/StanfordDataScience/dssg-cfa-public)** Partnering with Code for Africa, a team of three Stanford Data Science for Social Good fellows built a natural language processing model which processed government publications to identify suspicious behavior and uncover land related corruption in Kenya. We used Optical Character Recognition, Named Entity Recognition, and Network Analysis.
+7) **[dssg-cfa-public](https://github.com/StanfordDataScience/dssg-cfa-public)** Partnering with Code for Africa, a team of three Stanford Data Science for Social Good fellows built a natural language processing model which processed government publications to identify suspicious behavior and uncover land related corruption in Kenya. We used Optical Character Recognition, Named Entity Recognition, and Network Analysis.
