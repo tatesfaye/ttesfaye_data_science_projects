@@ -10,9 +10,9 @@ This repo contains various data science projects completed by Tsion (T) Tesfaye.
 
    * [covid_most_affected_as_of_jul26.pptx](COVID-19/covid_most_affected_as_of_jul26.pptx): I scraped the website: www.worldometers.info to study countries in the world most affected by the pandemic. [covid_most_affected_data_scrape.html](COVID-19/covid_most_affected_data_scrape.html) illustrates the process of harvesting the data while [covid_most_affected_as_of_jul26.twbx](COVID-19/covid_most_affected_as_of_jul26.twbx) shows the Tableau visualization and analysis of this data.
 
-   +     <!DOCTYPE html>
-          <html>
-          <body>
+   +     
+         
+      
 
 
              <table class="center", border="6">
@@ -29,8 +29,7 @@ This repo contains various data science projects completed by Tsion (T) Tesfaye.
                        <br> Stringr </td>
                   </tr>
                  </table>
-          </body>
-          </html>
+          
 
       + **_Skills_**: Web Scraping, Data Wrangling, Data Visualization, Story Telling
       + **_Tools/Packages_**: Tableau, rvest, tidyverse
