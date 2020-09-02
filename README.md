@@ -8,27 +8,7 @@ This repo contains various data science projects completed by Tsion (T) Tesfaye.
 
 1) **[COVID-19](COVID-19)**: As our newsfeed recently is inundated by COVID-19 related stories, I wanted to take a unique perspective and analyze the mico as well as macro impacts of the pandemic. This repo contains such projects.
 
-   * [covid_most_affected_as_of_jul26.pptx](COVID-19/covid_most_affected_as_of_jul26.pptx): I scraped the website: www.worldometers.info to study countries in the world most affected by the pandemic. [covid_most_affected_data_scrape.html](COVID-19/covid_most_affected_data_scrape.html) illustrates the process of harvesting the data while [covid_most_affected_as_of_jul26.twbx](COVID-19/covid_most_affected_as_of_jul26.twbx) shows the Tableau visualization and analysis of this data.
-
- <html>
- <body>
-       <table class="center", border="6">
-            <tr>
-               <td><b style="font-size:20px">Skills</b></td>
-               <td><b style="font-size:20px">Tools/Packages</b></td>
-            </tr>
-            <tr>
-               <td>Data Wrangling 
-                 <br> Data Visualization      
-                 <br> Story Telling </td>
-               <td>Tidycensus 
-                 <br> Mapbox
-                 <br> Stringr </td>
-            </tr>
-           </table>
-  </body>
-  </html>
-          
+   * [covid_most_affected_as_of_jul26.pptx](COVID-19/covid_most_affected_as_of_jul26.pptx): I scraped the website: www.worldometers.info to study countries in the world most affected by the pandemic. [covid_most_affected_data_scrape.html](COVID-19/covid_most_affected_data_scrape.html) illustrates the process of harvesting the data while [covid_most_affected_as_of_jul26.twbx](COVID-19/covid_most_affected_as_of_jul26.twbx) shows the Tableau visualization and analysis of this data.          
 
       + **_Skills_**: Web Scraping, Data Wrangling, Data Visualization, Story Telling
       + **_Tools/Packages_**: Tableau, rvest, tidyverse
@@ -39,9 +19,8 @@ This repo contains various data science projects completed by Tsion (T) Tesfaye.
       + **_Tools/Packages_**: gganimate, ggplot2, readxl, lubridate
 
 
-
-
 2) **[CS230](https://github.com/CX3XC/CS230)**: A repo linking to a class project that processes satellite imagery using a ResNet50 model and determines the building damage level in natural disasters so that emergency responders arrive prepared.
+
 
 3) **[Modeling](Modeling)**: How do hotels maximize booking while planning for potential cancellations? This repo answers that question by modeling the probability of guests canceling a booking in the [hotel_bookings.md](Modeling/hotel_bookings.md) workbook. The resulting model has an 81% predictive accuracy.
 
@@ -58,6 +37,11 @@ This repo contains various data science projects completed by Tsion (T) Tesfaye.
       + **_Tools/Packages_**: Tidycensus, Mapbox, Stringr
    
  5) **[Shiny_Appz](Shiny_Appz)**: This repo contains general use apps I designed using the Shiny Package.
+ 
+ 
+      + **_Skills_**: Interactive Data Visualization
+      + **_Tools/Packages_**:  shiny, Tidyverse
+
     
  6) **[US_Election](US_Elections)**: 
 
@@ -75,3 +59,7 @@ This repo contains various data science projects completed by Tsion (T) Tesfaye.
 
    
 7) **[dssg-cfa-public](https://github.com/StanfordDataScience/dssg-cfa-public)** Partnering with Code for Africa, a team of three Stanford Data Science for Social Good fellows built a natural language processing model which processed government publications to identify suspicious behavior and uncover land related corruption in Kenya. We used Optical Character Recognition, Named Entity Recognition, and Network Analysis.
+
+      + **_Skills_**: the entire data science life cycle, natural language processing
+      + **_Tools/Packages_**: NLTK, spaCy, Snorkel, Microsoft OCR, Python
+
