@@ -1,0 +1,117 @@
+---
+title: "reproducing_fed_rate_plot"
+author: "T Tesfaye"
+date: "9/2/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+# Library
+library(tidyverse)
+library(here)
+library(readxl)
+library(janitor)
+library(lubridate)
+
+
+
+# Parameters
+input_fed_rate <- here::here("data/fed_funds_rate_1985-2020.xls")
+
+
+#---------------------------------------------------------
+# Code
+
+# Read in the sheet titled FRED Graph and skip the first 10 lines which are notes
+fed_rate <- 
+  read_xls(input_fed_rate, skip = 10, sheet = 'FRED Graph')
+```
+## Intro
+
+In August 2020, the economic writer, Jeanna Smialek, published [an article](https://www.nytimes.com/2020/08/27/business/economy/federal-reserve-inflation-jerome-powell.html) in the New York Times detailing the Fed's plan to deal with unemployment caused by the COVID-19 pandemic. [The article](https://www.nytimes.com/2020/08/27/business/economy/federal-reserve-inflation-jerome-powell.html) explained how the Federal Reserve is taking an unusual approach to prioritize strong labor markets over lower inflation rates. 
+
+This visualization reproduces the historical data on interest rates.
+
+## Clean Up The Data
+
+```{r}
+fed_rate_cleaned <- 
+  fed_rate %>% 
+  janitor::clean_names() %>% 
+  mutate(
+    observation_date = as.Date(observation_date),
+    month = month(observation_date),
+    year = year(observation_date),
+    date = day(observation_date),
+  )
+```
+
+## Plot the data
+
+```{r}
+label_point <- 
+  fed_rate_cleaned %>%  
+  filter(observation_date == ymd('2020-07-01')) %>% 
+  mutate(fedfunds_per = scales::percent(fedfunds, scale = 1, accuracy = 0.01))
+```
+
+
+```{r}
+recession_years <- c(
+  as.Date('1990-08-01', origin = lubridate::origin),
+  as.Date('2001-08-01', origin = lubridate::origin),
+  as.Date('2008-01-01', origin = lubridate::origin),
+  as.Date('2020-02-01',origin = lubridate::origin)
+)
+```
+
+
+```{r}
+fed_rate_cleaned %>% 
+  ggplot(aes(observation_date, fedfunds)) +
+  geom_vline(xintercept = recession_years, color = 'grey95', size = 5) +
+  geom_line(inherit.aes = FALSE, data = fed_rate_cleaned, aes(observation_date, fedfunds), color = "#eb7154", size = 0.7) +
+  geom_point(data = label_point, color = "#eb7154", size = 1.3) +
+  geom_text(data = label_point, aes(label = fedfunds_per, fontface = 'bold'), hjust = -0.1, size = 3, vjust = -0.5) +
+  scale_y_continuous(
+    breaks = scales::breaks_width(2),
+    minor_breaks = NULL,
+    labels = scales::label_percent(scale = 1, accuracy = 1, suffix = "")
+  ) +
+  coord_cartesian(xlim = c(as.Date('1986-01-01'), as.Date('2021-01-01')), ylim = c(0.42, 9.6)) + 
+  scale_x_date(
+    breaks = c(as.Date('1985-01-01'), as.Date('1990-01-01'), as.Date('1995-01-01'), as.Date('2000-01-01'), as.Date('2005-01-01'), as.Date('2010-01-01'), as.Date('2015-01-01'), as.Date('2020-02-10')), 
+    date_labels = "%Y",
+    minor_breaks = NULL
+  ) +
+  annotate(
+    "text",
+    x = as.Date("1990-05-01"),
+    y = 1,
+    label = "RECESSIONS",
+    size = 2,
+    color = "grey40"
+  ) +
+  
+  theme_minimal() +
+  theme(
+    axis.ticks.x = element_line(color = 'black'),
+    axis.ticks.length.x = unit(0.20, 'cm'),
+    axis.line.x = element_line(color = 'black'),
+    axis.line.x.top = element_line(color = "black"),
+    panel.grid.major.x = element_blank(),
+    plot.title = element_text(face = 'bold')
+  ) +
+  labs(
+    y = NULL,
+    x = NULL,
+    title = 'How Interest Rates Have Moved',
+    subtitle = 'Interest rates are near zero as the Federal Reserve tries to support the economy while the\npandemic-induced downturn drags on.',
+    caption = "Source: Federal Reserve\nTsion Tesfaye\nMotivated by The New York Times"
+  )
+```
+
