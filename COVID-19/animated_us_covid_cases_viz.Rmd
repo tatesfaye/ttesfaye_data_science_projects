@@ -1,0 +1,79 @@
+---
+title: "animated_us_covid_cases_viz"
+author: "T Tesfaye"
+date: "9/3/2020"
+output: 
+  html_document:
+    toc: true
+    theme: journal
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE, warning=FALSE}
+# Libraries
+library(tidyverse)
+library(ggthemes)
+library(transformr)
+
+# Parameters
+path = "../../tsiontesfaye.github.io/COVID-19/data/nyt-us-states.csv"
+
+#-------------------------------------------------------------------------------
+# Code
+
+# Read in the data
+covid_states <- read_csv(path)
+```
+
+# Intro
+
+I was interested in viewing infection rates in different states since the beginning of the pandemic. This vizualization uses the open-sourced New York Times [covid-19-data](https://github.com/nytimes/covid-19-data) and demonstrates cases in states.
+
+
+# Visualize Covid Cases per State
+
+```{r}
+# Filter states with more than 100,000 cases to be labeled
+state_labels <- 
+  covid_states %>%
+  filter(cases > 100000)
+```
+
+Plot the graph anmiated.
+
+```{r}
+covid_states %>% 
+  ggplot(aes(date, cases, color = state)) +
+  geom_line(show.legend = FALSE) +
+  #geom_point(show.legend = FALSE) +
+  #scale_color_viridis_d() +
+  scale_y_continuous(
+    label = scales::label_number(scale = 1e-3)
+  ) +
+  ggrepel::geom_label_repel(data = state_labels, aes(label = state), show.legend = FALSE) +
+  #gganimate::transition_time(date) +
+  gganimate::transition_reveal(date) + #transition reveal calculates the intermediary values so the line is filled
+  gganimate::shadow_mark() + #shadow_mark says leave the previous states on the plot
+  theme(legend.position = 'none') +
+  theme_minimal() +
+  labs(
+    title = 'US Covid-19 Cases in: {frame_along}',
+    subtitle = "New York became the hotspot starting mid March.\ntate names shown for > 100,000 cases",
+    #subtitle = 'Frame {frame} of {nframe}',
+    y = "Number of Cases Per State \n (in thousands)",
+    caption = "Source: New York Times",
+    x = NULL
+  )
+```
+
+# Conclusion
+
+New York state emerges as the hotspot early on but is recently overtaken by California and Texas. 
+
+# Recommended next steps
+
+Potential next steps include cross-referencing this cases plot with a similar plot for deaths. Standardizing the cases per state population might also give a clearer picture of infection concentration.
