@@ -24,8 +24,8 @@ This repo contains various data science projects completed by Tsion (T) Tesfaye.
 
 3) **[Modeling](Modeling)**: How do hotels maximize booking while planning for potential cancellations? This repo answers that question by modeling the probability of guests canceling a booking in the [hotel_bookings.md](Modeling/hotel_bookings.md) workbook. The resulting model has an 81% predictive accuracy.
 
-   + **_Skills_**: Data Analysis, Modeling
-   + **_Tools/Packages_**: tidymodels, tidyverse
+   * **_Skills_**: Data Analysis, Modeling
+   * **_Tools/Packages_**: tidymodels, tidyverse
 
 
 
@@ -46,8 +46,8 @@ This repo contains various data science projects completed by Tsion (T) Tesfaye.
  5) **[Shiny_Appz](Shiny_Appz)**: This repo contains general use apps I designed using the Shiny Package.
  
  
-      + **_Skills_**: Interactive Data Visualization
-      + **_Tools/Packages_**:  shiny, Tidyverse
+   * **_Skills_**: Interactive Data Visualization
+   * **_Tools/Packages_**:  shiny, Tidyverse
 
     
  6) **[US_Election](US_Elections)**: 
@@ -67,6 +67,6 @@ This repo contains various data science projects completed by Tsion (T) Tesfaye.
    
 7) **[dssg-cfa-public](https://github.com/StanfordDataScience/dssg-cfa-public)** Partnering with Code for Africa, a team of three Stanford Data Science for Social Good fellows built a natural language processing model which processed government publications to identify suspicious behavior and uncover land related corruption in Kenya. We used Optical Character Recognition, Named Entity Recognition, and Network Analysis.
 
-    + **_Skills_**: the entire data science life cycle, natural language processing
-    + **_Tools/Packages_**: NLTK, spaCy, Snorkel, Microsoft OCR, Python
+   * **_Skills_**: the entire data science life cycle, natural language processing
+   * **_Tools/Packages_**: NLTK, spaCy, Snorkel, Microsoft OCR, Python
 
