@@ -2,11 +2,12 @@
 
 As our newsfeed lately is inundated by COVID-19 related stories, I wanted to take unique perspectives and analyze the mico as well as macro impacts of the pandemic. This repo contains such projects.
 
-* [animated_us_covid_cases_viz.html](COVID-19/animated_us_covid_cases_viz.html): I was interested in viewing infection rates in different states since the beginning of the pandemic. This vizualization uses the open-sourced New York Times [covid-19-data](https://github.com/nytimes/covid-19-data) and shows that although New York was the hotspot early on, California and Texas have become the hotspots lately.
+
+* [animated_us_covid_cases_viz.html](https://tatesfaye.github.io/ttesfaye_data_science_projects/COVID-19/animated_us_covid_cases_viz.html): I was interested in viewing infection rates in different states since the beginning of the pandemic. This vizualization uses the open-sourced New York Times [covid-19-data](https://github.com/nytimes/covid-19-data) and shows that although New York was the hotspot early on, California and Texas have become the hotspots lately. [Click here](https://github.com/tatesfaye/ttesfaye_data_science_projects/blob/master/COVID-19/animated_us_covid_cases_viz.Rmd) for the rmd.
 
 
-  - **_Skills_**: Animated Data Visualization
-  - **_Tools/Packages_**: gganimate, tidyverse
+    + **_Skills_**: Animated Data Visualization
+    + **_Tools/Packages_**: gganimate, tidyverse
 
 
 
