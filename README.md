@@ -51,7 +51,7 @@ This repo contains various data science projects completed by Tsion (T) Tesfaye.
       + **_Skills_**: Data Wrangling, Data Visualization, Story Telling
       + **_Tools/Packages_**: Tidycensus, Mapbox, Stringr
    
- 5) **[Shiny_Appz](Shiny_Appz)**: This repo contains general use apps I designed using the Shiny Package.
+ 5) **[Shiny_Appz](https://tsiontesfaye.shinyapps.io/Interactive_viz_plot_your_data/)**: This repo contains general use apps I designed using the Shiny Package.
  
  
    * **_Skills_**: Interactive Data Visualization
