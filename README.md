@@ -58,7 +58,7 @@ This repo contains various data science projects completed by Tsion (T) Tesfaye.
    * **_Tools/Packages_**:  shiny, Tidyverse
 
     
- 6) **[US_Election](US_Elections)**: 
+ 6) **[US_Election](US_Election)**: 
 
    * [election_financing.md](US_Election/election_financing.md): The 2020 US presidential race has been unusual in many aspects including the unprecedented spending on campaign ads. This repo takes a closer look at personal and public donations to finance campaigns of all democrat as well as republican candidates as of January 31, 2020. Fun Fact: Mike Bloomberg has set an all time spending record at half a billion dollars.    
 
